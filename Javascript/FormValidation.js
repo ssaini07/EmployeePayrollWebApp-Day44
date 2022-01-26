@@ -32,7 +32,8 @@ function salaryRange() {
 const save = () => {
     let employeePayrollData = new EmployeePayrollData();
 
-    alert(JSON.stringify(employeePayrollData));
+    //alert(JSON.stringify(employeePayrollData));
+    createAndUpdateLocalStorage(employeePayrollData);
 }
 
 const createEmployeePayroll = () => {
@@ -72,12 +73,24 @@ const setTextValue = (id, message) => {
 }
 
 const getSelectedValues = (propertyValue) => {
-    let allItems = document.querySelectorAll(propertyValue);
+    let allItem = document.querySelectorAll(propertyValue);
     let setItem = [];
-    allItems.forEach(item => {
+    allItem.forEach(item => {
         if (item.checked == true) {
             setItem.push(item.value);
         }
     })
     return setItem;
+}
+
+/** UC4 => Ability to save the Employee Payroll Object to Local Storage.*/
+const createAndUpdateLocalStorage = (empData) => {
+    let dataList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (dataList != undefined) {
+        dataList.push(empData);
+    } else {
+        dataList = [empData];
+    }
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(dataList));
+    alert("Data stored with the name: " + empData.name);
 }

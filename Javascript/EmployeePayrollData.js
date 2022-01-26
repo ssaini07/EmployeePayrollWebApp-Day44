@@ -5,6 +5,7 @@ class EmployeePayrollData {
         }
         /** setter method for name validation */
     set name(name) {
+        console.log("Inside setter");
         let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if (nameRegex.test(name))
             this._name = name;

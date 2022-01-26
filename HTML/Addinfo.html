@@ -26,7 +26,7 @@
 
     <!-- UC2 create a Form Header and the Input Text Element for Name-->
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save(event); return false" onreset="resetForm()">
+        <form class="form" action="#" onsubmit="save(); return false">
             <div class="form-head">
                 Employee Payroll Form
             </div>
@@ -146,12 +146,15 @@
                         <option value="Dec">December</option>
                     </select>
                     <select id="year" name="Year">
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
                         <option value="2017">2017</option>
                     </select>
+                    <error-output class="date-error" for="error"></error-output>
                 </div>
             </div>
 

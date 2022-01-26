@@ -1,18 +1,11 @@
 class EmployeePayrollData {
-
     //getter and setter method
-    get id() {
-        return this._id = id;
-    }
-    set id(id) {
-        this._id = id;
-    }
-
     get name() {
-        return this._name;
-    }
+            return this._name;
+        }
+        /** setter method for name validation */
     set name(name) {
-        let nameRegex = RegExp('^[A-z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if (nameRegex.test(name))
             this._name = name;
         else throw 'Name is incorrect';
@@ -25,25 +18,11 @@ class EmployeePayrollData {
         this._profilePic = profilePic;
     }
 
-    get gender() {
-        return this._gender;
-    }
-    set gender(gender) {
-        this._gender = gender;
-    }
-
     get department() {
-        return this._deparment;
+        return this._department;
     }
     set department(department) {
-        this._deparment = department;
-    }
-
-    get salary() {
-        return this._salary;
-    }
-    set salary(salary) {
-        this._salary = salary;
+        this._department = department;
     }
 
     get note() {
@@ -53,21 +32,52 @@ class EmployeePayrollData {
         this._note = note;
     }
 
-    get startDate() {
-        return this._startDate;
+    get id() {
+        return this._id;
     }
+
+    set id(id) {
+        this._id = id;
+    }
+
+    get salary() {
+        return this._salary;
+    };
+
+    set salary(salary) {
+        this._salary = salary;
+    }
+
+    get gender() {
+        return this._gender;
+    };
+    set gender(gender) {
+        this._gender = gender;
+    }
+
+    get startDate() {
+            return this._startDate;
+        }
+        /** setter method for date with validation no future date , should be within 30days of joining */
     set startDate(startDate) {
+        let currentDate = new Date();
+        if (startDate > currentDate) {
+            throw "Start date is a future date";
+        }
+
+        var diff = Math.abs(currentDate.getTime - startDate.getTime());
+        if (diff / (1000 * 60 * 24) > 30) {
+            throw "start date is beyond 30 days";
+        }
         this._startDate = startDate;
     }
 
-    //method to get values
+    //method
     toString() {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const empDate = !this._startDate ? "undefined" :
-            this.startDate.toLocalDateString("en-US", options);
-        return "id=" + this.id + ",name='" + this.name + ", gender='" + this.gender +
-            ",profilePic='" + this.profilePic + ", department=" + this.department +
-            ", salary=" + this.salary + ", startDate=" + empDate + ", note=" + this.note;
+
+        return "id : " + this._id + ", name : " + this._name + ", salary : " + this._salary + ", gender : " + this._gender +
+            ", date : " + this.startDate + ", profilepic : " + this._profilePic + ", department : " + this._department + ", note : " + this._note;
+
     }
 
 }

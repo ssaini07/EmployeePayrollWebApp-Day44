@@ -30,7 +30,7 @@ function salaryRange() {
 
 //UC3 => Ability to create Employee Payroll Object On Save.
 const save = () => {
-    let employeePayrollData = new EmployeePayrollData();
+   let employeePayrollData = createEmployeePayroll();
 
     //alert(JSON.stringify(employeePayrollData));
     createAndUpdateLocalStorage(employeePayrollData);
